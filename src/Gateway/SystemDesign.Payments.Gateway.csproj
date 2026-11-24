@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <RootNamespace>SystemDesign.Payments.Gateway</RootNamespace>
+    <Description>Edge gateway: authn, rate limit, Idempotency-Key — not SoT of money</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shared.Contracts\SystemDesign.Payments.Shared.Contracts.csproj" />
+  </ItemGroup>
+</Project>

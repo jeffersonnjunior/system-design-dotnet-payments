@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <RootNamespace>SystemDesign.Payments.Accounts</RootNamespace>
+    <Description>Accounts: account status, limits, blocks — must not post ledger</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shared.Contracts\SystemDesign.Payments.Shared.Contracts.csproj" />
+  </ItemGroup>
+</Project>
