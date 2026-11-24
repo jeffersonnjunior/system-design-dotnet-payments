@@ -1,0 +1,109 @@
+# Backstage-style catalog (owners in-repo). One Component per process.
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: payment-platform
+  description: Capstone Principal — multi-service payments platform
+spec:
+  owner: group:principal-study
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: gateway
+  description: Edge authn, rate limit, Idempotency-Key routing
+spec:
+  type: service
+  lifecycle: experimental
+  owner: group:edge
+  system: payment-platform
+  providesApis: []
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: accounts
+  description: Account status, limits, blocks (no ledger posts)
+spec:
+  type: service
+  lifecycle: experimental
+  owner: group:accounts
+  system: payment-platform
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: risk
+  description: Score + reasons; recommend only
+spec:
+  type: service
+  lifecycle: experimental
+  owner: group:risk
+  system: payment-platform
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: payments
+  description: Payment intention/FSM orchestrator; owns payment_id
+spec:
+  type: service
+  lifecycle: experimental
+  owner: group:payments
+  system: payment-platform
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: ledger
+  description: SoT for balance; double-entry journals and holds
+spec:
+  type: service
+  lifecycle: experimental
+  owner: group:ledger
+  system: payment-platform
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: settlement
+  description: Partner settle; retries; fencing; never invents journals
+spec:
+  type: service
+  lifecycle: experimental
+  owner: group:settlement
+  system: payment-platform
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: recon
+  description: Divergence detection; opens breaks
+spec:
+  type: service
+  lifecycle: experimental
+  owner: group:recon
+  system: payment-platform
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: extrato
+  description: Customer statement read-model (never authorizes)
+spec:
+  type: service
+  lifecycle: experimental
+  owner: group:extrato
+  system: payment-platform
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: ops-breakdesk
+  description: MANUAL_BREAK queue, SLA, assignee
+spec:
+  type: service
+  lifecycle: experimental
+  owner: group:ops
+  system: payment-platform
