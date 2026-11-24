@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
-
   <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>SystemDesign.Payments.Ops.BreakDesk</RootNamespace>
+    <Description>Ops break desk: MANUAL_BREAK queue, SLA, assignee — no ledger bypass</Description>
   </PropertyGroup>
-
+  <ItemGroup>
+    <ProjectReference Include="..\Shared.Contracts\SystemDesign.Payments.Shared.Contracts.csproj" />
+  </ItemGroup>
 </Project>

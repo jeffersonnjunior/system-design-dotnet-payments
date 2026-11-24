@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "components": [
+    "Microsoft.VisualStudio.Component.CoreEditor",
+    "Microsoft.VisualStudio.Workload.NetWeb",
+    "Microsoft.NetCore.Component.SDK",
+    "Microsoft.NetCore.Component.Runtime.8.0",
+    "Microsoft.VisualStudio.Component.DockerTools"
+  ]
+}
