@@ -1,0 +1,6 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>SystemDesign.Payments.Shared.Contracts</RootNamespace>
+    <Description>Versioned DTOs and event envelopes shared across payment platform services. Keep thin — no business logic.</Description>
+  </PropertyGroup>
+</Project>
