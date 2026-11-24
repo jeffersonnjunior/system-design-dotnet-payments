@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <RootNamespace>SystemDesign.Payments.Recon</RootNamespace>
+    <Description>Recon: detect divergences; open breaks — never silently fixes balance</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shared.Contracts\SystemDesign.Payments.Shared.Contracts.csproj" />
+  </ItemGroup>
+</Project>

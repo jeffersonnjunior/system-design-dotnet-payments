@@ -1,0 +1,26 @@
+[
+  {
+    "Name": "All services",
+    "Projects": [
+      { "Name": "src\\Gateway\\SystemDesign.Payments.Gateway.csproj", "Action": "StartWithoutDebugging" },
+      { "Name": "src\\Accounts\\SystemDesign.Payments.Accounts.csproj", "Action": "StartWithoutDebugging" },
+      { "Name": "src\\Risk\\SystemDesign.Payments.Risk.csproj", "Action": "StartWithoutDebugging" },
+      { "Name": "src\\Payments\\SystemDesign.Payments.Payments.csproj", "Action": "Start" },
+      { "Name": "src\\Ledger\\SystemDesign.Payments.Ledger.csproj", "Action": "Start" },
+      { "Name": "src\\Settlement\\SystemDesign.Payments.Settlement.csproj", "Action": "StartWithoutDebugging" },
+      { "Name": "src\\Recon\\SystemDesign.Payments.Recon.csproj", "Action": "StartWithoutDebugging" },
+      { "Name": "src\\Extrato\\SystemDesign.Payments.Extrato.csproj", "Action": "StartWithoutDebugging" },
+      { "Name": "src\\Ops.BreakDesk\\SystemDesign.Payments.Ops.BreakDesk.csproj", "Action": "StartWithoutDebugging" }
+    ]
+  },
+  {
+    "Name": "Authorize path (sync)",
+    "Projects": [
+      { "Name": "src\\Gateway\\SystemDesign.Payments.Gateway.csproj", "Action": "Start" },
+      { "Name": "src\\Accounts\\SystemDesign.Payments.Accounts.csproj", "Action": "Start" },
+      { "Name": "src\\Risk\\SystemDesign.Payments.Risk.csproj", "Action": "Start" },
+      { "Name": "src\\Payments\\SystemDesign.Payments.Payments.csproj", "Action": "Start" },
+      { "Name": "src\\Ledger\\SystemDesign.Payments.Ledger.csproj", "Action": "Start" }
+    ]
+  }
+]
