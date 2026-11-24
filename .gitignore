@@ -1,0 +1,60 @@
+## .NET
+bin/
+obj/
+out/
+*.user
+*.userosscache
+*.suo
+*.userprefs
+*.dbmdl
+*.jfm
+*.pfx
+*.publishsettings
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+## Visual Studio
+.vs/
+*.rsuser
+*.sln.docstates
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+## Rider / VS Code
+.idea/
+*.sln.iml
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+## OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+## Secrets / local env
+.env
+.env.*
+!.env.example
+*.local.json
+appsettings.*.local.json
+
+## Test / coverage
+TestResults/
+coverage/
+*.coverage
+*.coveragexml
+
+## Docker
+*.log
