@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <RootNamespace>SystemDesign.Payments.Payments</RootNamespace>
+    <Description>Payments orchestrator: intention/FSM for PIX, card, scheduled — never stores balance</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shared.Contracts\SystemDesign.Payments.Shared.Contracts.csproj" />
+  </ItemGroup>
+</Project>

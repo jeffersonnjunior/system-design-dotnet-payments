@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <RootNamespace>SystemDesign.Payments.Ledger</RootNamespace>
+    <Description>Ledger: SoT for balance/position via double-entry — never calls SPI partner</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shared.Contracts\SystemDesign.Payments.Shared.Contracts.csproj" />
+  </ItemGroup>
+</Project>
