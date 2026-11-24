@@ -1,0 +1,111 @@
+# Separate processes per service (card DoD — not a monolith in folders).
+# From repo root: docker compose -f infra/docker-compose.yml up --build
+
+name: system-design-payments
+
+x-service-build: &service-build
+  context: ..
+  dockerfile: infra/Dockerfile
+
+services:
+  gateway:
+    build:
+      <<: *service-build
+      args:
+        PROJECT_PATH: src/Gateway
+        PROJECT_NAME: SystemDesign.Payments.Gateway
+    command: ["dotnet", "SystemDesign.Payments.Gateway.dll"]
+    ports: ["5100:8080"]
+
+  accounts:
+    build:
+      <<: *service-build
+      args:
+        PROJECT_PATH: src/Accounts
+        PROJECT_NAME: SystemDesign.Payments.Accounts
+    command: ["dotnet", "SystemDesign.Payments.Accounts.dll"]
+    ports: ["5101:8080"]
+
+  risk:
+    build:
+      <<: *service-build
+      args:
+        PROJECT_PATH: src/Risk
+        PROJECT_NAME: SystemDesign.Payments.Risk
+    command: ["dotnet", "SystemDesign.Payments.Risk.dll"]
+    ports: ["5102:8080"]
+
+  payments:
+    build:
+      <<: *service-build
+      args:
+        PROJECT_PATH: src/Payments
+        PROJECT_NAME: SystemDesign.Payments.Payments
+    command: ["dotnet", "SystemDesign.Payments.Payments.dll"]
+    ports: ["5103:8080"]
+
+  ledger:
+    build:
+      <<: *service-build
+      args:
+        PROJECT_PATH: src/Ledger
+        PROJECT_NAME: SystemDesign.Payments.Ledger
+    command: ["dotnet", "SystemDesign.Payments.Ledger.dll"]
+    ports: ["5104:8080"]
+
+  settlement:
+    build:
+      <<: *service-build
+      args:
+        PROJECT_PATH: src/Settlement
+        PROJECT_NAME: SystemDesign.Payments.Settlement
+    command: ["dotnet", "SystemDesign.Payments.Settlement.dll"]
+    ports: ["5105:8080"]
+
+  recon:
+    build:
+      <<: *service-build
+      args:
+        PROJECT_PATH: src/Recon
+        PROJECT_NAME: SystemDesign.Payments.Recon
+    command: ["dotnet", "SystemDesign.Payments.Recon.dll"]
+    ports: ["5106:8080"]
+
+  extrato:
+    build:
+      <<: *service-build
+      args:
+        PROJECT_PATH: src/Extrato
+        PROJECT_NAME: SystemDesign.Payments.Extrato
+    command: ["dotnet", "SystemDesign.Payments.Extrato.dll"]
+    ports: ["5107:8080"]
+
+  ops-breakdesk:
+    build:
+      <<: *service-build
+      args:
+        PROJECT_PATH: src/Ops.BreakDesk
+        PROJECT_NAME: SystemDesign.Payments.Ops.BreakDesk
+    command: ["dotnet", "SystemDesign.Payments.Ops.BreakDesk.dll"]
+    ports: ["5108:8080"]
+
+  # Infra placeholders — DBs/broker land in a later commit (one DB per service).
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: payments
+      POSTGRES_PASSWORD: payments
+      POSTGRES_DB: platform
+    ports: ["5432:5432"]
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./postgres/init:/docker-entrypoint-initdb.d:ro
+
+  rabbitmq:
+    image: rabbitmq:3.13-management-alpine
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+volumes:
+  pgdata:
