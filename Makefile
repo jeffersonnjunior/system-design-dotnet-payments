@@ -1,7 +1,7 @@
 COMPOSE := docker compose -f infra/docker-compose.yml
 SLN := SystemDesign.Payments.sln
 
-.PHONY: restore build up down logs demo health prove-idempotency prove-no-double-settle prove-partial-med prove-unknown-settle prove-saga-card-capture-fail
+.PHONY: restore build test up down logs demo health prove-idempotency prove-no-double-settle prove-partial-med prove-unknown-settle prove-saga-card-capture-fail
 
 restore:
 	dotnet restore $(SLN)
@@ -9,6 +9,9 @@ restore:
 build:
 	dotnet restore $(SLN)
 	dotnet build $(SLN) -c Release
+
+test:
+	dotnet test $(SLN) -c Release --nologo
 
 up:
 	$(COMPOSE) up --build -d
@@ -35,13 +38,13 @@ demo:
 	@$(MAKE) health
 
 prove-idempotency:
-	@echo "TODO: 2x same Idempotency-Key -> 1 journal"
+	dotnet test tests/unit/Ledger.Tests/SystemDesign.Payments.Ledger.Tests.csproj --nologo --filter "FullyQualifiedName~Idempotency"
 
 prove-no-double-settle:
 	@echo "TODO: settlement replay must not double-post"
 
 prove-partial-med:
-	@echo "TODO: partial MED legs balanced"
+	dotnet test tests/unit/Ledger.Tests/SystemDesign.Payments.Ledger.Tests.csproj --nologo --filter "FullyQualifiedName~Reverse_partial"
 
 prove-unknown-settle:
 	@echo "TODO: UNKNOWN stays observable + break/recon, no second settle"

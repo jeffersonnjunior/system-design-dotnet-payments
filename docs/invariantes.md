@@ -4,12 +4,12 @@ Cada invariante precisa de **serviço dono + mecanismo**. Atualizar esta tabela 
 
 | # | Invariante | Dono | Mecanismo (status) |
 |---|---|---|---|
-| 1 | Só Ledger é SoT de saldo/posição | Ledger | TBD — journals/accounts chart |
-| 2 | Mudança de posição = double-entry balanceada | Ledger | TBD — reject unbalanced legs |
-| 3 | Intenção idempotente (`Idempotency-Key` + hash) | Gateway + Payments + Ledger | Header em Shared.Contracts; store TBD |
-| 4 | Sem dual-write: efeito + outbox no mesmo commit | cada serviço dono | TBD — outbox table |
-| 5 | Estorno/MED parcial: legs reversas proporcionais | Ledger + Payments | TBD — Reverse(% ) |
-| 6 | Hold/PENDING com expiração | Ledger | TBD — hold expiry job |
+| 1 | Só Ledger é SoT de saldo/posição | Ledger | `InMemoryLedgerStore` + `/v1/accounts/{id}/balance` (Postgres depois) |
+| 2 | Mudança de posição = double-entry balanceada | Ledger | `Journal.CreateBalanced` rejeita legs desbalanceadas |
+| 3 | Intenção idempotente (`Idempotency-Key` + hash) | Gateway + Payments + Ledger | Ledger: `JournalKey`/`HoldKey` idempotentes; Gateway header ainda stub |
+| 4 | Sem dual-write: efeito + outbox no mesmo commit | cada serviço dono | TBD — outbox table (Ledger ainda in-memory single write) |
+| 5 | Estorno/MED parcial: legs reversas proporcionais | Ledger + Payments | `POST /v1/journals/{id}/reverse` com `Percent` (ex.: 37%) |
+| 6 | Hold/PENDING com expiração | Ledger | Place/Release Hold OK; job de expiry ainda TBD |
 | 7 | Accounts dono de limite/bloqueio/status | Accounts | TBD — GetAccountDecision |
 | 8 | Risk recomenda; Payments decide commit | Risk / Payments | Skeleton roles documented in `/` |
 | 9 | Settlement não inventa lançamento | Settlement | TBD — only on commanded settle |
