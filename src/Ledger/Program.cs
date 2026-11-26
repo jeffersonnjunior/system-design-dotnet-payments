@@ -1,8 +1,13 @@
+using SystemDesign.Payments.Ledger.Application;
+using SystemDesign.Payments.Ledger.Endpoints;
+using SystemDesign.Payments.Ledger.Infrastructure;
 using SystemDesign.Payments.Shared.Contracts.Health;
 using SystemDesign.Payments.Shared.Contracts.Ids;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddHealthChecks();
+builder.Services.AddSingleton<ILedgerStore, InMemoryLedgerStore>();
+builder.Services.AddSingleton<LedgerService>();
 
 var app = builder.Build();
 
@@ -25,6 +30,7 @@ app.MapGet("/", () => Results.Ok(new
     status = "up",
     commands = new[] { "PostJournal", "PlaceHold", "ReleaseHold", "Reverse" }
 }));
+app.MapLedgerEndpoints();
 
 app.Run();
 
